@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="850.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.basgrau.fantasy.human.fx.HumanFXController">
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="Edit">
+          <items>
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" onAction="#handleConnectToWebSocketAction" text="Verbinde mit Herkules" />
+            <MenuItem mnemonicParsing="false" onAction="#handleCloseWebSocketAction" text="Trenne von Herkules" />
+                  <SeparatorMenuItem mnemonicParsing="false" text="Testmenue" />
+            <MenuItem mnemonicParsing="false" onAction="#handleSendTestNachrichtToWebSocketAction" text="Sende WebSocketNachticht (Test)" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About HumanFX" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+      <SplitPane dividerPositions="0.5" prefHeight="760.0" prefWidth="1024.0">
+         <items>
+            <VBox prefHeight="768.0" prefWidth="480.0">
+               <children>
+                  <Label text="Jax-RS Schnittstelle" />
+                  <Pane maxHeight="50.0" minHeight="50.0" prefHeight="50.0" prefWidth="200.0" />
+                  <TabPane prefHeight="620.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="jax-rs Nachrichten">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox prefHeight="600.0" prefWidth="480.0">
+                                       <children>
+                                          <TextField fx:id="txtGoetterNachrichtText" prefWidth="300.0" />
+                                          <Button mnemonicParsing="false" onAction="#handleSendeGoetterNachrichtAction" text="sende Nachricht (Jax-RS)" />
+                                          <ScrollPane prefHeight="600.0" prefWidth="480.0">
+                                             <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="480.0">
+                                                   <children>
+                                                      <ListView fx:id="goetterNachrichtenListView" onMouseClicked="#handleSendTestNachrichtToWebSocketAction" prefHeight="600.0" prefWidth="480.0" />
+                                                   </children>
+                                                </AnchorPane>
+                                             </content>
+                                          </ScrollPane>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                        <Tab text="Verarbeitete Sendungen">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox prefHeight="600.0" prefWidth="480.0">
+                                       <children>
+                                          <Pane maxHeight="50.0" minHeight="50.0" prefHeight="50.0" prefWidth="200.0" />
+                                          <ScrollPane prefHeight="680.0" prefWidth="480.0">
+                                             <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="460.0">
+                                                   <children>
+                                                      <ListView fx:id="alleVerarbeitetenSendungenListView" prefHeight="600.0" prefWidth="450.0" />
+                                                   </children>
+                                                </AnchorPane>
+                                             </content>
+                                          </ScrollPane>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                      <Tab text="Sendungsstatus (Test)">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox prefHeight="600.0" prefWidth="480.0">
+                                       <children>
+                                          <TextField fx:id="txtSendungsNummer" prefWidth="300.0" />
+                                          <Button mnemonicParsing="false" onAction="#handleCheckStatusSendungsnummerAction" text="Status zu Sendungsnummer" />
+                                          <ScrollPane prefHeight="680.0" prefWidth="480.0">
+                                            <content>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="460.0">
+                                                   <children>
+                                                      <ListView fx:id="sendungsNummernListView" prefHeight="600.0" prefWidth="480.0" />
+                                                   </children>
+                                                </AnchorPane>
+                                            </content>
+                                          </ScrollPane>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                        <Tab text="Sendungen (Test)">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox prefHeight="600.0" prefWidth="480.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#handleGetAlleSendungenAction" text="Sendungen abrufen" />
+                                          <ScrollPane prefHeight="680.0" prefWidth="480.0">
+                                             <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="460.0">
+                                                   <children>
+                                                      <ListView fx:id="alleSendungenListView" prefHeight="600.0" prefWidth="480.0" />
+                                                   </children>
+                                                </AnchorPane>
+                                             </content>
+                                          </ScrollPane>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                    </tabs>
+                  </TabPane>
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="WebSocket Status" />
+                              <RadioButton fx:id="rbtnStatus" mnemonicParsing="false" text="on" />
+                           </children>
+                        </HBox>
+                        <Label alignment="CENTER_RIGHT" text="Nachrichten" />
+                        <Separator prefWidth="200.0" />
+                        <ScrollPane fitToHeight="true" fitToWidth="true" minHeight="-Infinity" prefHeight="620.0" prefWidth="200.0">
+                          <content>
+                            <AnchorPane minHeight="-Infinity" minWidth="0.0" prefHeight="620.0" prefWidth="200.0">
+                                 <children>
+                                    <ListView fx:id="wsNachrichtenListView" minHeight="-Infinity" prefHeight="620.0" prefWidth="620.0" />
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </ScrollPane>
+                      <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#handleClearWsNachrichtenListAction" text="Leeren" textAlignment="RIGHT" />
+                     </children>
+                  </VBox>
+                  <Separator prefWidth="200.0" />
+                  <TextField fx:id="txtWsNachricht" />
+                  <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#handleSendWsNachrichtAction" text="Nachricht senden" textAlignment="RIGHT" />
+               </children>
+            </VBox>
+         </items>
+      </SplitPane>
+      <Separator prefWidth="200.0" />
+      <Label fx:id="labelStatus" text="Status:" />
+      <Separator prefWidth="200.0" />
+      <Label fx:id="labelVerarbeitung" />
+  </children>
+</VBox>

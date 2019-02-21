@@ -1,0 +1,15 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>de.basgrau.fantasy</groupId>
+  <artifactId>fantasy-parent</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>Fantasy Parent</name>
+  <modules>
+  	<module>fantasy-herkules-war</module>
+  	<module>fantasy-zeus-war</module>
+  	<module>fantasy-hades-war</module>
+  	<module>fantasy-hermes-jar</module>
+  	<module>fantasy-human-fx</module>
+  </modules>
+</project>
