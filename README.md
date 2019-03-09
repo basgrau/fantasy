@@ -43,3 +43,6 @@ Achtung in der aktuellen Umsetzung, je Client nur eine WebSocket Session!
 In diesem Fall ist oft das ``fantasy-hermes-jar`` nicht erfolgreich gebaut und im Repo abgelegt. Das Gleiche kann auch mit dem ``fantasy-parent`` passieren.
 Lösung: ``mvn clean package install``.
  
+## Ablauf
+
+![alt overview](pics/overview.png "Übersicht")
