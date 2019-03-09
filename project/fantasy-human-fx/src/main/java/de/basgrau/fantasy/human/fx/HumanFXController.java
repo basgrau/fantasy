@@ -1,7 +1,8 @@
 package de.basgrau.fantasy.human.fx;
 
-import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import de.basgrau.fantasy.human.fx.util.HumanFxUtil;
 import de.basgrau.fantasy.human.fx.websocket.HerkulesWebSocketClientConnector;
@@ -71,14 +72,32 @@ public class HumanFXController {
 	 * 
 	 * @throws UnknownHostException Fehler
 	 */
-	public HumanFXController() throws UnknownHostException {
+	public HumanFXController() {
 		// Init UserConfig
-		userConfig = new UserConfig();
-		userConfig.setHumanClientID("HumanClient" + InetAddress.getLocalHost().getHostAddress());
-		userConfig.setSendungsNummern("empty");
+		setUserConfig();
 
 		// Output Client ID
 		System.out.println(userConfig.getHumanClientID());
+	}
+
+	/**
+	 * setUserConfig.
+	 * 
+	 */
+	private void setUserConfig() {
+		userConfig = new UserConfig();
+		String humanId = "defaultClientId";
+		
+        try {
+        	ResourceBundle bundle = ResourceBundle.getBundle(this.getClass().getPackageName().toString()+".config");
+            humanId = bundle.getString("humanid");
+        } catch (Exception e) {
+			System.err.println("Properties 'config.properties' nicht gefunden.");
+			System.err.println(e.getMessage());
+		}
+        
+		userConfig.setHumanClientID(humanId);
+		userConfig.setSendungsNummern("empty");
 	}
 
 	@FXML
