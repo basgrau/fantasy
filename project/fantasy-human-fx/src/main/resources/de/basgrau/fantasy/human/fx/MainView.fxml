@@ -71,28 +71,6 @@
                               </AnchorPane>
                         </content>
                       </Tab>
-                        <Tab text="Verarbeitete Sendungen">
-                           <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <VBox prefHeight="600.0" prefWidth="480.0">
-                                       <children>
-                                          <Pane maxHeight="50.0" minHeight="50.0" prefHeight="50.0" prefWidth="200.0" />
-                                          <ScrollPane prefHeight="680.0" prefWidth="480.0">
-                                             <content>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="460.0">
-                                                   <children>
-                                                      <ListView fx:id="alleVerarbeitetenSendungenListView" prefHeight="600.0" prefWidth="450.0" />
-                                                   </children>
-                                                </AnchorPane>
-                                             </content>
-                                          </ScrollPane>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </Tab>
                       <Tab text="Sendungsstatus (Test)">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -154,7 +132,7 @@
                         </HBox>
                         <Label alignment="CENTER_RIGHT" text="Nachrichten" />
                         <Separator prefWidth="200.0" />
-                        <ScrollPane fitToHeight="true" fitToWidth="true" minHeight="-Infinity" prefHeight="620.0" prefWidth="200.0">
+                        <ScrollPane fitToHeight="true" fitToWidth="true" minHeight="-Infinity" prefHeight="240.0" prefWidth="200.0">
                           <content>
                             <AnchorPane minHeight="-Infinity" minWidth="0.0" prefHeight="620.0" prefWidth="200.0">
                                  <children>
@@ -169,6 +147,21 @@
                   <Separator prefWidth="200.0" />
                   <TextField fx:id="txtWsNachricht" />
                   <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#handleSendWsNachrichtAction" text="Nachricht senden" textAlignment="RIGHT" />
+                  <VBox prefHeight="600.0" prefWidth="480.0">
+                     <children>
+                        <Pane maxHeight="50.0" minHeight="20.0" prefHeight="20.0" prefWidth="200.0" />
+                        <Label text="Verarbeitete Sendungen" />
+                        <ScrollPane prefHeight="680.0" prefWidth="480.0">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="460.0">
+                                 <children>
+                                    <ListView fx:id="alleVerarbeitetenSendungenListView" prefHeight="600.0" prefWidth="450.0" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
                </children>
             </VBox>
          </items>
