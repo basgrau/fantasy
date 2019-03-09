@@ -1,7 +1,6 @@
 package de.basgrau.fantasy.human.fx;
 
 import java.net.UnknownHostException;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 import de.basgrau.fantasy.human.fx.util.HumanFxUtil;
@@ -24,6 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
@@ -55,7 +55,7 @@ public class HumanFXController {
 	@FXML
 	private TextField txtSendungsNummer;
 	@FXML
-	private TextField txtGoetterNachrichtText;
+	private TextArea txtGoetterNachrichtText;
 	@FXML
 	private ListView<String> wsNachrichtenListView;
 	@FXML
@@ -119,6 +119,9 @@ public class HumanFXController {
 		rbtnStatus.setDisable(true);
 		HumanFxUtil.setWebSocketStatus(rbtnStatus, false);
 
+		// Set GoetterNachricht
+		txtGoetterNachrichtText.setText(generateXMLNachrichtTemplate(userConfig.getHumanClientID()));
+		
 		// Set WsNachrichten List / View
 		setListView(wsNachrichtenListData, wsNachrichtenListView, "");
 
@@ -152,6 +155,30 @@ public class HumanFXController {
 				}));
 		webSocketConnectorTimeline.setCycleCount(Timeline.INDEFINITE);
 		webSocketConnectorTimeline.play();
+	}
+
+	/**
+	 * generateXMLNachrichtTemplate.
+	 * @param humanClientID Id
+	 * @return Xml Template
+	 */
+	private String generateXMLNachrichtTemplate(String humanClientID) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("<goetternachricht>\n");
+		sb.append("<steuerung>\n");
+		sb.append(" <user>"+humanClientID+"</user>\n");
+		sb.append("<absender>HFX</absender>\n");
+		sb.append("<empfaenger>ZEUS</empfaenger>\n");
+		sb.append(" </steuerung>\n");
+		sb.append(" <daten>\n");
+		sb.append(" <gebet id=\"0\">WOHNORT</gebet>\n");
+		sb.append(" <gebet id=\"1\">ERFOLG</gebet>\n");
+		sb.append(" <gabe id=\"0\">Reis</gabe>\n");
+		sb.append(" <gabe id=\"1\">Wein</gabe>\n");
+		sb.append("</daten>\n");
+		sb.append("</goetternachricht>");
+		
+		return sb.toString();
 	}
 
 	/**
