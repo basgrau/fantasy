@@ -1,0 +1,82 @@
+<server>
+	<featureManager onError="FAIL">
+		<feature>wasJmsServer-1.0</feature>
+		<feature>localConnector-1.0</feature>
+		<feature>jmsMdb-3.2</feature>
+		<feature>wasJmsClient-2.0</feature>
+		<feature>ejbLite-3.2</feature>
+		<feature>websocket-1.1</feature>
+        <feature>jaxrs-2.1</feature>
+    	<feature>servlet-4.0</feature>
+	</featureManager>
+
+
+	<httpEndpoint host="localhost" httpPort="9124" httpsPort="9125" id="defaultHttpEndpoint">
+	</httpEndpoint>
+
+	<wasJmsEndpoint id="InboundJmsCommsEndpoint" wasJmsPort="9126" wasJmsSSLPort="9127"/>
+
+
+	<messagingEngine>
+
+		<queue id="MDBO">
+		</queue>
+
+		<queue id="MDBQ">
+		</queue>
+
+		<queue id="MDBU">
+		</queue>
+
+	</messagingEngine>
+
+
+	<jmsActivationSpec id="jms11-JMSSample/SampleMDB">
+		<properties.wasJms destinationRef="jndi/MDBQ"/>
+	</jmsActivationSpec>
+
+	<jmsActivationSpec id="jms11-JMSSample/ZeusMDB">
+		<properties.wasJms destinationRef="jndi/MDBO"/>
+	</jmsActivationSpec>
+
+	<jmsActivationSpec id="jms11-JMSSample/HadesMDB">
+		<properties.wasJms destinationRef="jndi/MDBU"/>
+	</jmsActivationSpec>
+
+	<jmsActivationSpec id="fantasy-zeus-war-0.0.1-SNAPSHOT/ZeusMDB">
+		<properties.wasJms destinationRef="jndi/MDBO"/>
+	</jmsActivationSpec>
+
+	<jmsActivationSpec id="fantasy-hades-war-0.0.1-SNAPSHOT/HadesMDB">
+		<properties.wasJms destinationRef="jndi/MDBU"/>
+	</jmsActivationSpec>
+
+	<jmsQueueConnectionFactory connectionManagerRef="ConMgr6" jndiName="jndi_JMS_BASE_QCF">
+		<properties.wasJms/>
+	</jmsQueueConnectionFactory>
+	<connectionManager id="ConMgr6" maxPoolSize="5"/>
+
+
+	<jmsQueue id="jndi/MDBO" jndiName="jndi/MDBO">
+		<properties.wasJms queueName="MDBO"/>
+	</jmsQueue>
+
+	<jmsQueue id="jndi/MDBQ" jndiName="jndi/MDBQ">
+		<properties.wasJms queueName="MDBQ"/>
+	</jmsQueue>
+
+
+
+	<jmsQueue id="jndi/MDBU" jndiName="jndi/MDBU">
+		<properties.wasJms queueName="MDBU"/>
+	</jmsQueue>
+
+
+	<applicationMonitor updateTrigger="mbean"/>
+
+    <webApplication id="fantasy-hades-war" location="fantasy-hades-war-0.0.1-SNAPSHOT.war" name="fantasy-hades-war"/>
+
+    <webApplication id="fantasy-herkules-war" location="fantasy-herkules-war-0.0.1-SNAPSHOT.war" name="fantasy-herkules-war"/>
+
+    <webApplication id="fantasy-zeus-war" location="fantasy-zeus-war-0.0.1-SNAPSHOT.war" name="fantasy-zeus-war"/>
+</server>
